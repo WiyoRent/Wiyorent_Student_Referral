@@ -56,7 +56,7 @@ export default function AdminLotteryPage() {
             Pick a winner and view qualified users
           </p>
         </div>
-
+ 
         {error && (
           <div className="mb-6 p-4 bg-red-50 border-2 border-red-500 rounded-lg flex items-start gap-3">
             <svg className="w-6 h-6 text-red-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
