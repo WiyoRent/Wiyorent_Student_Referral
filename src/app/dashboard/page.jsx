@@ -99,14 +99,16 @@ export default function DashboardPage() {
   async function submitReferral(e) {
     e.preventDefault();
     setSubmitting(true);
+    // Clear all previous messages
     setError("");
     setSuccessMsg("");
-    // phone validation: +2507XXXXXXXX or 07XXXXXXXX
-    const phoneOk = /^(\+2507\d{8}|07\d{8})$/.test(landlordPhone.trim());
+    setConflict(null);
+    
+    // Updated phone validation: 07[8-9]XXXXXXX (must start with 078 or 079)
+    const phoneOk = /^07[89]\d{7}$/.test(landlordPhone.trim());
     if (!phoneOk) {
       setSubmitting(false);
-      setConflict(null);
-      setError("Please enter a valid phone number (07XXXXXXXX or +2507XXXXXXXX).");
+      setError("Please enter a valid phone number starting with 078 or 079 (e.g., 0781234567).");
       return;
     }
     try {
@@ -123,7 +125,6 @@ export default function DashboardPage() {
           if (json.conflict.type === 'blacklist') setConflict({ type: 'blacklist', data: json.conflict.blacklist });
           else if (json.conflict.type === 'wiyorent') setConflict({ type: 'wiyorent', data: json.conflict.wiyorent });
           else setConflict({ type: 'duplicate', data: json.conflict.referral });
-          setError("");
         } else {
           throw new Error(json.message || "Oops! Something went wrong. Please try submitting again.");
         }
@@ -134,9 +135,7 @@ export default function DashboardPage() {
       setLandlordName("");
       setLandlordPhone("");
       setLocation("");
-      setConflict(null);
     } catch (e) {
-      setConflict(null);
       setError(e.message || "Oops! Something went wrong. Please try submitting again.");
     } finally {
       setSubmitting(false);
@@ -188,7 +187,7 @@ export default function DashboardPage() {
               <section className="bg-white rounded-2xl p-6 mb-8 shadow-sm border border-gray-200">
                 {((typeof winnerInfo.winningUser === 'string' ? winnerInfo.winningUser : winnerInfo.winningUser?._id) === me._id) ? (
                   <div className="text-green-900 bg-green-50 border border-green-200 rounded-lg p-4 text-center text-lg font-semibold">
-                    🎉 Congratulations! You’re the winner of the latest WiyoRent Lottery!
+                    🎉 Congratulations! You're the winner of the latest WiyoRent Lottery!
                   </div>
                 ) : (
                   <div className="text-[#010101] bg-amber-50 border border-amber-200 rounded-lg p-4 text-center text-lg">
@@ -259,7 +258,7 @@ export default function DashboardPage() {
                       className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-lg text-base focus:border-[#EDB508] focus:outline-none transition-colors text-black"
                       value={landlordPhone} 
                       onChange={(e) => setLandlordPhone(e.target.value)} 
-                      placeholder="Enter landlord phone number"
+                      placeholder="e.g., 0781234567"
                       required 
                     />
                   </div>
