@@ -153,7 +153,7 @@ export default function HomePage() {
           </div>
 
           {/* Footer */}
-          <div className="text-center pt-8 border-t" style={{ borderColor: '#333' }}>
+          {/* <div className="text-center pt-8 border-t" style={{ borderColor: '#333' }}>
             <p style={{ color: '#999' }}>
               <Shield className="w-4 h-4 inline-block mr-2" style={{ color: '#EDB508' }} />
               Admin? Visit{" "}
@@ -165,7 +165,7 @@ export default function HomePage() {
                 Admin dashboard
               </Link>
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
     </main>
