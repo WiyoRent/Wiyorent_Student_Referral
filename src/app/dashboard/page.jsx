@@ -221,6 +221,19 @@ export default function DashboardPage() {
               </div>
             </section>
 
+            {/* Quick Rules */}
+            <div className="my-8 max-w-2xl mx-auto space-y-4">
+              <QuickRulesCard />
+              <div className="text-center">
+                <Link
+                  href="/rules"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all border-2 border-[#EDB508] text-[#EDB508] hover:bg-[#EDB508] hover:text-[#010101]"
+                >
+                  View Full Guidelines
+                </Link>
+              </div>
+            </div>
+
 
             {/* Submit Referral Form */}
             <section className="bg-white rounded-2xl p-8 mb-8 shadow-sm border border-gray-200">
@@ -327,6 +340,8 @@ export default function DashboardPage() {
               </div>
             </section>
 
+            
+
             {/* Referrals List */}
             <section className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
               <h3 className="text-2xl font-semibold text-[#010101] mb-6">
@@ -389,18 +404,7 @@ export default function DashboardPage() {
               )}
             </section>
 
-            {/* Quick Rules */}
-            <div className="my-8 max-w-2xl mx-auto space-y-4">
-              <QuickRulesCard />
-              <div className="text-center">
-                <Link
-                  href="/rules"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold transition-all border-2 border-[#EDB508] text-[#EDB508] hover:bg-[#EDB508] hover:text-[#010101]"
-                >
-                  View Full Guidelines
-                </Link>
-              </div>
-            </div>
+            
             
             </>
           ) : (
